@@ -1,0 +1,42 @@
+<div style="padding: 10px;height:100vh"> 
+<mat-card class="modal w-600 card" *ngIf="productDetails" style="border: 1px solid coral;">
+        <h2 style="text-align: left;color: coral;margin-bottom:0">
+            {{productDetails.bundle_name}}
+        </h2>
+        <p style="text-align: left;">{{productDetails.sku}}</p> 
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex="40">
+                <mat-card *ngIf="productDetails.thumbnail">
+                    <img src="{{productDetails.thumbnail}}" class="img" alt="No image Available">
+                </mat-card>
+            </div>
+                <div fxFlex="20" style="border-right: 1px solid lightgray">
+                    <p>Your Price</p>
+                        <p class="colors" *ngIf="productDetails.your_price != 'NA'">
+                            {{productDetails.your_price}}
+                        </p>
+                        <p *ngIf="productDetails.your_price == 'NA'">
+                            -
+                        </p>
+                </div>
+                <div fxFlex="20" style="border-right: 1px solid lightgray;">
+                    <p>Lowest Price</p>
+                <p class="colors" *ngIf="productDetails.lowest_price_value != 'NA'">
+                    {{productDetails.lowest_price_value }}
+                </p>
+                <p *ngIf="productDetails.lowest_price_value == 'NA'">
+                   -
+                </p>
+                </div>
+                <div fxFlex="20" style="border-right: 1px solid lightgray;">
+                    <p>Highest Price</p>
+                <p class="colors" *ngIf="productDetails.highest_price_value != 'NA'">
+                    {{productDetails.highest_price_value}}
+                </p>
+                <p *ngIf="productDetails.highest_price_value == 'NA'">
+                    -
+                </p>
+            </div>
+        </div>
+</mat-card>
+</div>

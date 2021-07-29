@@ -1,0 +1,18 @@
+.w-600{
+    width:600px;
+    text-align: center;
+}
+.img{
+   max-width: 100%;
+   max-height: 100%;
+}
+.content{
+    margin-top: -190px;
+    position: absolute;
+    left: 210px;
+}
+.card{
+margin: 20px;
+padding: 20px;
+overflow: auto;
+}

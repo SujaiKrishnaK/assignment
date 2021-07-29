@@ -1,0 +1,22 @@
+.card{
+    margin:20px;
+    overflow: auto;
+    padding: 15px;
+}
+.search-tool {
+    font-weight: 100;
+    letter-spacing: 1px;
+      font-size: initial;
+    width: 100%;
+}
+.icon{
+    font-size: 32px;
+    margin: 20px 0 0 10px;
+}
+.chip{
+    position: relative;
+    left: 140px;
+}
+.sCard{
+border: 1px solid cornflowerblue;
+}

@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;900&display=swap');
+.bg-side{
+    width: 241px;
+    margin: 10px;
+}
+.views{
+color: white;
+font-family: 'Roboto', sans-serif;
+}
+.mat-sidenav-container{
+    height: 100%;
+}
+mat-sidenav {
+    width: 300px;
+    background-color: cornflowerblue;
+}

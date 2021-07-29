@@ -1,0 +1,80 @@
+<div style="padding:10px;height: 100vh">
+    <mat-toolbar-row>
+        <div class="row">
+            <div class="col-lg-8">
+                <mat-form-field floatLabel="never" class="search-tool">
+                    <input matInput class="" [(ngModel)]="searchTxt" type="text" name="searchTxt"
+                      id="filterText" (ngModelChange)="filterUpdate.next($event)" placeholder="Search">
+                    <button class="gray" matSuffix mat-icon-button *ngIf="searchTxt === ''">
+                      <mat-icon>search</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+            <div class="col-lg-2"  *ngIf="midData && midData.length > 0">
+                <span class="material-icons icon" [matMenuTriggerFor]="menu">
+                    import_export
+                </span>
+                <mat-menu #menu="matMenu" xPosition="before">
+                    <button mat-menu-item name="menu value" (click)="sortCall($event,highlow)" value="available_price">
+                       PRICE - {{highlow.display}}   
+                    </button>
+                    <button mat-menu-item name="menu value" (click)="sortCall($event,highlow)" value="discount" >DISCOUNT% - {{highlow.display}}</button>
+                    <button mat-menu-item name="menu value" (click)="sortCall($event,highlow)" value="price_opportunity_increase_by_percentage">INCREASE% - {{highlow.display}}</button>
+                    <button mat-menu-item name="menu value" (click)="sortCall($event,highlow)" value="not_lowest_decrease_by_percentage">DECREASE% - {{highlow.display}}</button>
+                  </mat-menu>
+            </div>
+            <div class="col-lg-2">
+                <span class="material-icons icon">
+                    file_download
+                    </span>
+            </div>
+        </div>
+    </mat-toolbar-row>
+     <ng-container *ngIf="midData && midData.length > 0">
+            <mat-card *ngFor="let data of midData" [matRippleColor]="rippleColor" (click)="setProduct(data)" class="card sCard" matRipple>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <p>
+                          <a href="">
+                          <span>&#8377;</span>{{data.available_price}}
+                          </a>
+                          </p>
+                          <p style="color: coral;">
+                              {{data.bundle_name}}
+                            </p> 
+                            <p style="color: gray;">
+                              {{data.sku}}
+                            </p> 
+                            <div *ngIf="data.stock == 'in stock' && data.is_valid == 1">
+                              <p class="colors">Increases Upto
+                                <span>&#8377;</span> {{data.Price_opportunity_increase_by}} <span *ngIf="data.price_opportunity_increase_by_percentage">
+                                  ({{data.price_opportunity_increase_by_percentage}}) 
+                                </span>
+                              </p> 
+                              <p class="colors">
+                               Opportunity Exists from last {{data.Price_opportunity_days}} day(s) 
+                              </p> 
+                            </div>
+                           <div  *ngIf="data.stock != 'in stock'">
+                            <p class="colors">Out of Stock From {{data.out_of_stock_seed_days}} day(s)</p>
+                        </div>
+                        <div *ngIf="data.is_valid == 0">
+                            <p>Product Not Available</p>
+                        </div>
+                            </div>
+                            <div *ngIf="data.thumbnail"  class="col-lg-4">
+                                <img src="{{data.thumbnail}}" width="120" height="180" alt="thumbnail">
+                            </div>
+                        </div> 
+              </mat-card>
+        </ng-container>  
+        <mat-chip-list *ngIf="midData && midData.length > 0" class="chip">
+          <ng-container>
+            <mat-chip *ngIf="count-limit > 0" (click)="pageCall()">{{count - limit}} Product(s) More</mat-chip>  
+            <mat-chip *ngIf="count-limit < 0" (click)="pageCall('back')">Back</mat-chip> 
+          </ng-container>
+        </mat-chip-list>
+       <h4 *ngIf="midData && midData.length == 0">
+          No Data Available
+       </h4> 
+</div>

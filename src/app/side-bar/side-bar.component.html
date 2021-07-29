@@ -1,0 +1,36 @@
+<mat-sidenav-container>
+  <mat-sidenav mode="push" [(opened)]="opened">
+    <mat-card class="ml10" style="height:100vh;background-color: cornflowerblue;">
+      <div class="views">
+        <h1><strong>
+          Views
+        </strong></h1>
+      </div>
+       <mat-selection-list #item [multiple]="false">
+        <mat-list-option style="margin-top: 10px;color: azure;" (click)="showMid(item)" *ngFor="let item of navItems" [value]="item">
+       <span style="font-weight:bolder;">{{item.title}}</span><span *ngIf="item.title == 'All matched products'">{{allProductsCount}}
+          </span>
+          <span *ngIf="item.title == 'Margin gain opportunities'" >{{incopportunityCount}}
+          </span>
+        </mat-list-option>
+      </mat-selection-list>
+        </mat-card>
+  </mat-sidenav>
+  <mat-sidenav-content>
+<div fxLayoutGap="2px" fxFlex="5" style="margin:10px ;">
+  <div class="example-button-row">
+  <button style="width: 100%;" color="" mat-raised-button (click)="opened = !opened">
+    <mat-icon>menu</mat-icon>
+  </button>
+  </div>
+</div>
+<as-split direction="horizontal">
+  <as-split-area [size]="35">
+    <app-mid-section></app-mid-section>
+  </as-split-area>
+  <as-split-area [size]="45">
+    <app-main-section></app-main-section>
+  </as-split-area>
+</as-split>
+  </mat-sidenav-content>
+</mat-sidenav-container>
